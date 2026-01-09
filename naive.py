@@ -7,7 +7,6 @@ def Naive(settings):
 	return NaiveFunction(settings.start, settings.end)
 
 def NaiveFunction(start, end):
-	print("Finding primes from", start, "to", end)
 	primes = []
 	pQ = True
 	for i in range(start, end):

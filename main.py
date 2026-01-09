@@ -3,6 +3,7 @@ import time
 
 from settings import Settings
 from naive import Naive
+from sieve import Sieve
 
 def main():
 	settings = Settings()
@@ -12,9 +13,12 @@ def main():
 	while True:
 		print("Choose Algorithm (or Settings):\nNaive (N):\nSieve of Eratosthenes (SE):\nSettings(S):")
 		alg = input()
+		print("Finding primes from", settings.start, "to", settings.end)
 		tstart = time.time()
 		if alg.lower() == "n":
 			primes = Naive(settings)
+		if alg.lower() == "se":
+			primes = Sieve(settings)
 		elif alg.lower() == "s":
 			print("Please input a new starting number then ending number:")
 			start = input()
@@ -35,4 +39,5 @@ def main():
 			print('')
 		else:
 			print(primes)
+		print("")
 main()
