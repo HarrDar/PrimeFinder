@@ -1,5 +1,5 @@
 start:1
 end:1000
-printAmount:50
-printHigh:25
-printLow:25
+printAmount:20
+printHigh:10
+printLow:10

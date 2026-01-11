@@ -4,6 +4,7 @@ import time
 from settings import Settings
 from Algorithms.naive import Naive
 from Algorithms.sieveErat import SieveErat
+from Algorithms.SieveSund import SieveSund
 
 Algs = ["Naive (N)", "Sieve of Eratosthenes (SE)", "Sieve of Sundaram (SS)", "Settings (S)", "Exit (E)"]
 
@@ -24,6 +25,8 @@ def main():
 			primes = Naive(settings)
 		elif alg.lower() == "se":
 			primes = SieveErat(settings)
+		elif alg.lower() == "ss":
+			primes = SieveSund(settings)
 		elif alg.lower() == "s":
 			print("Please input a new starting number then ending number:")
 			start = input()
