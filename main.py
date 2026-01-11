@@ -5,6 +5,8 @@ from settings import Settings
 from Algorithms.naive import Naive
 from Algorithms.sieveErat import SieveErat
 
+Algs = ["Naive (N)", "Sieve of Eratosthenes (SE)", "Sieve of Sundaram (SS)", "Settings (S)", "Exit (E)"]
+
 def main():
 	settings = Settings()
 	primes = []
@@ -12,7 +14,9 @@ def main():
 	tend = 0
 
 	while True:
-		print("Choose Algorithm (or Settings):\nNaive (N):\nSieve of Eratosthenes (SE):\nSettings(S):\nExit(E):")
+		print("Choose Algorithm (or Settings):")
+		for a in Algs:
+			print(a)
 		alg = input()
 		print("Finding primes from", settings.getStart(), "to", settings.getEnd())
 		tstart = time.time()
