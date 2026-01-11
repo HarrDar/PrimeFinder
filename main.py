@@ -2,8 +2,8 @@ import os
 import time
 
 from settings import Settings
-from naive import Naive
-from sieve import Sieve
+from Algorithms.naive import Naive
+from Algorithms.sieveErat import SieveErat
 
 def main():
 	settings = Settings()
@@ -19,7 +19,7 @@ def main():
 		if alg.lower() == "n":
 			primes = Naive(settings)
 		elif alg.lower() == "se":
-			primes = Sieve(settings)
+			primes = SieveErat(settings)
 		elif alg.lower() == "s":
 			print("Please input a new starting number then ending number:")
 			start = input()

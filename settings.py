@@ -1,5 +1,4 @@
 import os
-import random
 
 class Settings:
 	sets = {}

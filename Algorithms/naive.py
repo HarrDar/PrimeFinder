@@ -1,6 +1,3 @@
-import os
-import random
-
 from settings import Settings
 
 def Naive(settings):
