@@ -10,14 +10,15 @@ def main():
 	primes = []
 	tstart = 0
 	tend = 0
+
 	while True:
-		print("Choose Algorithm (or Settings):\nNaive (N):\nSieve of Eratosthenes (SE):\nSettings(S):")
+		print("Choose Algorithm (or Settings):\nNaive (N):\nSieve of Eratosthenes (SE):\nSettings(S):\nExit(E):")
 		alg = input()
-		print("Finding primes from", settings.start, "to", settings.end)
+		print("Finding primes from", settings.getStart(), "to", settings.getEnd())
 		tstart = time.time()
 		if alg.lower() == "n":
 			primes = Naive(settings)
-		if alg.lower() == "se":
+		elif alg.lower() == "se":
 			primes = Sieve(settings)
 		elif alg.lower() == "s":
 			print("Please input a new starting number then ending number:")
@@ -25,16 +26,19 @@ def main():
 			end = input()
 			settings.setStart(start)
 			settings.setEnd(end)
+		elif alg.lower() == "e":
+			break
 		else:
 			print("Function not found")
 		tend = time.time()
 		print("Time Elapsed:", tend-tstart, "s")
+
 		print(len(primes), "prime numbers found")
-		if len(primes) > settings.printAmount:
-			for i in range(settings.printLow):
+		if len(primes) > settings.getPrintAmount():
+			for i in range(settings.getPrintLow()):
 				print(primes[i], ", ", sep='', end='')
 			print("....., ", end='')
-			for i in range(len(primes)-(settings.printHigh+1), len(primes)-1):
+			for i in range(len(primes)-(settings.getPrintHigh()+1), len(primes)-1):
 				print(primes[i], ", ", sep='', end='')
 			print('')
 		else:

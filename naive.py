@@ -4,7 +4,7 @@ import random
 from settings import Settings
 
 def Naive(settings):
-	return NaiveFunction(settings.start, settings.end)
+	return NaiveFunction(settings.getStart(), settings.getEnd())
 
 def NaiveFunction(start, end):
 	primes = []
