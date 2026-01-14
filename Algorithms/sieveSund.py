@@ -15,9 +15,7 @@ def sieveFunction(start, end):
 			sieve[p+q+(2*p*q)] = True
 			q += 1
 
-	#Edge case: 1 & 2 Are never found in alg
-	if start <=1:
-		primes.append(1)
+	#Edge case: 2 is never found in alg
 	if start <=2:
 		primes.append(2)
 	for i in range(1, l):

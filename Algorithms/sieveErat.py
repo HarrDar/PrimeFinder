@@ -15,7 +15,7 @@ def sieveFunction(start, end):
 			while pCount < end:
 				sieve[pCount] = True
 				pCount += p
-	for i in range(start, end):
+	for i in range(max(2,start), end):
 		if not sieve[i]:
 			primes.append(i)
 	return primes

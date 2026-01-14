@@ -6,7 +6,7 @@ def Naive(settings):
 def NaiveFunction(start, end):
 	primes = []
 	pQ = True
-	for i in range(start, end):
+	for i in range(max(start,2), end):
 		for j in range(2, int(i/2)+1):
 			if i % j == 0:
 				pQ = False
