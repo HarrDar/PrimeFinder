@@ -6,8 +6,21 @@ from Algorithms.naive import Naive
 from Algorithms.sieveErat import SieveErat
 from Algorithms.sieveSund import SieveSund
 from Algorithms.sieveAtkin import SieveAtkin
+from Algorithms.wilsonsThm import WilsonsTheorem
 
-Algs = ["Naive (N)", "Sieve of Eratosthenes (SE)", "Sieve of Sundaram (SS)", "Sieve of Atkin (SA)", "Settings (S)", "Exit (E)"]
+def settingsFunction(settings):
+	print("Please input a new starting number then ending number:")
+	start = input()
+	end = input()
+	settings.setStart(start)
+	settings.setEnd(end)
+	return "settings"
+
+def exitProgram(settings):
+	exit()
+
+#Algorithms added in form Name, Tag, Function
+Algs = [["Naive", "N", Naive], ["Sieve of Eratosthenes", "SE", SieveErat], ["Sieve of Sundaram", "SS", SieveSund], ["Sieve of Atkin", "SA", SieveAtkin], ["Wilson's Theorem", "W", WilsonsTheorem], ["Settings", "S", settingsFunction], ["Exit", "E", exitProgram]]
 
 def main():
 	settings = Settings()
@@ -18,40 +31,37 @@ def main():
 	while True:
 		print("Choose Algorithm (or Settings):")
 		for a in Algs:
-			print(a)
+			print(a[0], " (", a[1], ")", sep='')
 		alg = input()
-		print("Finding primes from", settings.getStart(), "to", settings.getEnd())
 		tstart = time.time()
-		if alg.lower() == "n":
-			primes = Naive(settings)
-		elif alg.lower() == "se":
-			primes = SieveErat(settings)
-		elif alg.lower() == "ss":
-			primes = SieveSund(settings)
-		elif alg.lower() == "sa":
-			primes = SieveAtkin(settings)
-		elif alg.lower() == "s":
-			print("Please input a new starting number then ending number:")
-			start = input()
-			end = input()
-			settings.setStart(start)
-			settings.setEnd(end)
-		elif alg.lower() == "e":
-			break
-		else:
-			print("Function not found")
-		tend = time.time()
-		print("Time Elapsed:", tend-tstart, "s")
+		foundFunc = False
+		for a in Algs:
+			if a[1] == alg.upper():
+				if alg.upper() not in ["S","E"]:
+					print("Finding primes from", settings.getStart(), "to", settings.getEnd())
+				primes = a[2](settings)
+				foundFunc = True
+				break
 
-		print(len(primes), "prime numbers found")
-		if len(primes) > settings.getPrintAmount():
-			for i in range(settings.getPrintLow()):
-				print(primes[i], ", ", sep='', end='')
-			print("....., ", end='')
-			for i in range(len(primes)-(settings.getPrintHigh()+1), len(primes)):
-				print(primes[i], ", ", sep='', end='')
-			print('')
+		tend = time.time()
+		if not foundFunc:
+			print("Function not found")
+		elif primes == "settings":
+			primes = []
+		elif len(primes) == 0:
+			print("Range contains no primes")
 		else:
-			print(primes)
+			print("Time Elapsed:", tend-tstart, "s")
+			print(len(primes), "prime numbers found")
+
+			if len(primes) > settings.getPrintAmount():
+				for i in range(settings.getPrintLow()):
+					print(primes[i], ", ", sep='', end='')
+				print("....., ", end='')
+				for i in range(len(primes)-(settings.getPrintHigh()+1), len(primes)):
+					print(primes[i], ", ", sep='', end='')
+				print('')
+			else:
+				print(primes)
 		print("")
 main()
